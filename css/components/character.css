@@ -1,11 +1,68 @@
 a-character {
+  transition: .2s;
+  box-sizing: border-box;
+  position: relative;
   display: inline-flex;
-  justify-content: space-between;
+  gap: 4px;
   padding: 16px;
   border-radius: 4px;
   background-color: var(--background_light_color);
+  box-shadow: var(--shadow_4dp);
+  transform: scale(1);
 }
 
-a-character > * {
+a-character.deleted {
+  background-color: var(--danger_color);
+  transform: scale(0);
+}
+
+a-character > div {
   display: inline-flex;
+  line-height: 32px;
+  border-radius: 4px;
+}
+
+a-character > div:hover {
+  text-decoration-line: underline;
+}
+
+a-character .name {
+  flex-grow: 1;
+}
+
+a-character .bonus_initiative {
+  font-size: 0.6em;
+  position: relative;
+  top: -5px;
+}
+
+a-character .delete {
+  transition: .2s;
+  position: absolute;
+  top: 0;
+  right: 0px;
+  transform: translate(40%, -40%);
+  width: 0;
+  height: 0;
+  line-height: 0;
+  background-color: var(--danger_color);
+  border-radius: 50%;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  font-family: 'Material Icons';
+  font-size: 0;
+  overflow: hidden;
+}
+
+a-character:hover .delete {
+  width: 38px;
+  height: 38px;
+  line-height: 38px;
+  box-shadow: var(--shadow_4dp);
+  font-size: 24px;
+}
+
+a-character .delete:hover {
+  background-color: var(--danger_light_color);
 }

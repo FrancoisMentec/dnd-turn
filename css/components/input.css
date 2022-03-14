@@ -1,0 +1,15 @@
+input {
+  background-color: white;
+  color: black;
+  border: 2px solid white;
+  border-radius: 4px;
+  padding: 0 8px;
+  height: 32px;
+  line-height: 28px;
+  outline: none;
+}
+
+input:focus {
+  border: 2px solid var(--primary_color);
+  box-shadow: var(--shadow_2dp);
+}
