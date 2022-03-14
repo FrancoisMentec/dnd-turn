@@ -2,6 +2,10 @@ let characters_container = document.getElementById('characters_container')
 
 let characters = []
 
+function save () {
+  document.cookie = `characters=${JSON.stringify(characters.map(character => character.serialize()))}; expires=${in_one_year().toGMTString()}`
+}
+
 function sort_characters () {
   characters = characters.sort(compare_characters)
   empty(characters_container)
@@ -14,11 +18,10 @@ function bind_character (character) {
     setTimeout(() => {
       characters.splice(characters.indexOf(character), 1)
       characters_container.removeChild(character)
+      save()
     }, 200)
   })
-  character.addEventListener('change', () => {
-    document.cookie = `characters=${JSON.stringify(characters.map(character => character.serialize()))}; expires=${in_one_year().toGMTString()}`
-  })
+  character.addEventListener('change', () => { save() })
 }
 
 document.getElementById('new_character').addEventListener('click', () => {

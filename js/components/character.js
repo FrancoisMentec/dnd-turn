@@ -72,8 +72,8 @@ class Character extends HTMLElement {
     if (typeof value == 'string') value = parseInt(value)
     if (value != this.initiative) {
       this._initiative = value
-      this.dispatchEvent(new Event('change'))
       this.dispatchEvent(new Event('initiative_change'))
+      this.dispatchEvent(new Event('change'))
     }
     this.initiative_div.textContent = `${this.initiative}`
   }
@@ -86,8 +86,8 @@ class Character extends HTMLElement {
     if (typeof value == 'string') value = parseInt(value)
     if (value != this._bonus_initiative) {
       this._bonus_initiative = value
-      this.dispatchEvent(new Event('change'))
       this.dispatchEvent(new Event('initiative_change'))
+      this.dispatchEvent(new Event('change'))
     }
     this.bonus_initiative_div.textContent = `(+${this.bonus_initiative})`
   }
