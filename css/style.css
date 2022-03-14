@@ -1,5 +1,21 @@
+:root {
+  --background_color: #424242;
+  --text_color: white;
+  --background_light_color: #6d6d6d;
+  --background_dark_color: #1b1b1b;
+}
+
 html, body {
   margin: 0;
   padding: 0;
+  background-color: var(--background_color);
   font-family: 'Roboto', sans-serif;
+  color: var(--text_color);
+}
+
+#characters_container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
 }

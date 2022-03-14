@@ -1,0 +1,11 @@
+a-character {
+  display: inline-flex;
+  justify-content: space-between;
+  padding: 16px;
+  border-radius: 4px;
+  background-color: var(--background_light_color);
+}
+
+a-character > * {
+  display: inline-flex;
+}
