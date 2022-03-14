@@ -29,13 +29,14 @@ document.getElementById('new_character').addEventListener('click', () => {
 })
 
 for (let cookie of document.cookie.split(/\s+/)) {
-  if (cookie.startsWith('characters='))
-  let characters_data = JSON.parse(cookie.slice(11))
-  characters_data.forEach(character_data => {
-    let character = new Character(character_data)
-    bind_character(character)
-    characters.push(character)
-    sort_characters()
-  })
-  break
+  if (cookie.startsWith('characters=')) {
+    let characters_data = JSON.parse(cookie.slice(11))
+    characters_data.forEach(character_data => {
+      let character = new Character(character_data)
+      bind_character(character)
+      characters.push(character)
+      sort_characters()
+    })
+    break
+  }
 }
