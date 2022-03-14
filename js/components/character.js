@@ -1,6 +1,6 @@
 function bind_change (element, get, set) {
   element.addEventListener('click', () => {
-    if (element.firstChild.tagName == 'INPUT') return
+    if (element.firstChild && element.firstChild.tagName == 'INPUT') return
     let input = document.createElement('input')
     input.value = get()
     input.addEventListener('change', () => { set(input.value) })
@@ -21,12 +21,18 @@ class Character extends HTMLElement {
     name = 'John Doe',
     initiative = 0,
     bonus_initiative = 0,
+    image = 'https://www.dndbeyond.com/Content/Skins/Waterdeep/images/characters/default-avatar-builder.png',
   } = {}) {
     super()
     this._initialized = false
     this._name = null
     this._initiative = null
     this._bonus_initiative = null
+    this._image = null
+
+    this.image_div = document.createElement('div')
+    this.image_div.className = 'image'
+    bind_change(this.image_div, value => this.image, value => this.image = value)
 
     this.name_div = document.createElement('div')
     this.name_div.className = 'name'
@@ -47,9 +53,26 @@ class Character extends HTMLElement {
       this.dispatchEvent(new Event('delete'))
     })
 
+    this.image = image
     this.name = name
     this.initiative = initiative
     this.bonus_initiative = bonus_initiative
+  }
+
+  get image () {
+    return this._image
+  }
+
+  set image (value) {
+    if (value != this.image) {
+      this._image = value
+      this.dispatchEvent(new Event('change'))
+    }
+    try {
+      this.image_div.innerHTML = `<img src="${this.image}">`
+    } catch (error) {
+      // Useless erro, it does work just fine
+    }
   }
 
   get name () {
@@ -96,6 +119,7 @@ class Character extends HTMLElement {
     if (this._initialized) return
     this._initialized = true
 
+    this.appendChild(this.image_div)
     this.appendChild(this.name_div)
     this.appendChild(this.initiative_div)
     this.appendChild(this.bonus_initiative_div)
@@ -106,7 +130,8 @@ class Character extends HTMLElement {
     return  {
       name: this.name,
       initiative: this.initiative,
-      bonus_initiative: this.bonus_initiative
+      bonus_initiative: this.bonus_initiative,
+      image: this.image
     }
   }
 }

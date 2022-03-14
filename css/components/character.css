@@ -4,7 +4,9 @@ a-character {
   position: relative;
   display: inline-flex;
   gap: 4px;
-  padding: 16px;
+  padding: 0 16px;
+  height: 64px;
+  align-items: center;
   border-radius: 4px;
   background-color: var(--background_light_color);
   box-shadow: var(--shadow_4dp);
@@ -24,6 +26,17 @@ a-character > div {
 
 a-character > div:hover {
   text-decoration-line: underline;
+}
+
+a-character .image {
+  min-width: 32px;
+  margin-right: 8px;
+}
+
+a-character .image img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
 }
 
 a-character .name {
